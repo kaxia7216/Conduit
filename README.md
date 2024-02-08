@@ -16,7 +16,7 @@ git clone https://github.com/kaxia7216/Conduit.git
 ```
 conduitディレクトリに移動します。
 ```
-cd conduit
+cd Conduit
 ```
 
 sail コマンドを入力します。
