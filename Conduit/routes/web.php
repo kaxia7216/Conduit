@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,9 @@ Route::post('/create', [ArticleController::class, 'createArticle']);
 
 //記事の削除
 Route::get('/delete/{article_id}', [ArticleController::class, 'deleteArticle']);
+
+//コメントの追加
+Route::post('/add-comment/{article_id}', [CommentController::class, 'addComment']);
+
+//コメントの削除
+Route::get('/delete-Comment/{comment_id}&{article_id}', [CommentController::class, 'deleteComment']);

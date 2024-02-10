@@ -1,3 +1,4 @@
+ <?php //記事詳細画面?>
 @include('layouts.head')
 @include('layouts.header')
 <div class="article-page">
@@ -73,50 +74,37 @@
 
     <div class="row">
       <div class="col-xs-12 col-md-8 offset-md-2">
-        <form class="card comment-form">
+        <form class="card comment-form" method="POST" action="/add-comment/{{$article->id}}">
+          @csrf
           <div class="card-block">
-            <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+            <textarea class="form-control" placeholder="Write a comment..." rows="3" name="comment"></textarea>
           </div>
           <div class="card-footer">
-            <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+            <!-- <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" /> -->
             <button class="btn btn-sm btn-primary">Post Comment</button>
           </div>
         </form>
 
-        <div class="card">
-          <div class="card-block">
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
+        @foreach($articleComments as $Comment)
+          <div class="card">
+            <div class="card-block">
+              <p class="card-text">
+                {{$Comment->comment}}
+              </p>
+            </div>
+            <div class="card-footer">
+              <!-- <a href="/profile/author" class="comment-author">
+                <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+              </a> -->
+              &nbsp;
+              <!-- <a href="/profile/jacob-schmidt" class="comment-author">Jacob Schmidt</a> -->
+              <span class="date-posted">{{$Comment->created_at}}</span>
+              <span class="mod-options">
+                <a href="/delete-Comment/{{$Comment->id}}&{{$article->id}}"><i class="ion-trash-a"></i></a>
+              </span>
+            </div>
           </div>
-          <div class="card-footer">
-            <a href="/profile/author" class="comment-author">
-              <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-            </a>
-            &nbsp;
-            <a href="/profile/jacob-schmidt" class="comment-author">Jacob Schmidt</a>
-            <span class="date-posted">Dec 29th</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-block">
-            <p class="card-text">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
-          </div>
-          <div class="card-footer">
-            <a href="/profile/author" class="comment-author">
-              <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-            </a>
-            &nbsp;
-            <a href="/profile/jacob-schmidt" class="comment-author">Jacob Schmidt</a>
-            <span class="date-posted">Dec 29th</span>
-            <span class="mod-options">
-              <i class="ion-trash-a"></i>
-            </span>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </div>

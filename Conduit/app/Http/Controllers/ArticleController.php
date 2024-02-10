@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Comment;
 
 class ArticleController extends Controller
 {
@@ -18,7 +19,7 @@ class ArticleController extends Controller
     public function createArticle(Request $request)
     {
         //新規記事を作成
-        $article = new Article;
+        $article = new Article();
         $article->title = $request['title'];
         $article->theme = $request['theme'];
         $article->text = $request['text'];
@@ -39,8 +40,9 @@ class ArticleController extends Controller
     {
         //idをもとに記事を１件取得する
         $article = Article::firstWhere('id', $article_id);
+        $articleComments = Comment::where('article_id', $article_id)->get();
 
-        return view('article', compact('article'));
+        return view('article', compact('article', 'articleComments'));
     }
 
     public function forEditArticle($article_id)
@@ -54,13 +56,15 @@ class ArticleController extends Controller
     public function editArticle(Request $request, $article_id)
     {
         //記事の内容を更新
-        $article = Article::where('id', $article_id);
-        $article->update(['title' => $request['title']]);
-        $article->update(['theme' => $request['theme']]);
-        $article->update(['text' => $request['text']]);
+        $renewArticle = Article::where('id', $article_id);
+        $renewArticle->update(['title' => $request['title']]);
+        $renewArticle->update(['theme' => $request['theme']]);
+        $renewArticle->update(['text' => $request['text']]);
 
+        $article = Article::firstWhere('id', $article_id);
 
-        return redirect('/');
+        //記事詳細画面にもどる
+        return view('article', compact('article'));
     }
 
     public function deleteArticle($article_id)
