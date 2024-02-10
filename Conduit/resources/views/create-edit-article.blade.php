@@ -25,9 +25,11 @@
                 >{{$article->text}}</textarea>
               </fieldset>
               <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="Enter tags" />
+                <input type="text" class="form-control" placeholder="Enter tags" name="tags"/>
                 <div class="tag-list">
-                  <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
+                  @foreach($article->tags as $article_tag)
+                  <a href="/tag-delete/{{$article->id}}&{{$article_tag->id}}"><span class="tag-default tag-pill"> <i class="ion-close-round"></i> {{$article_tag->name}} </span></a>
+                  @endforeach
                 </div>
               </fieldset>
               <button class="btn btn-lg pull-xs-right btn-primary" type="submit">
@@ -54,9 +56,9 @@
                 ></textarea>
               </fieldset>
               <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="Enter tags" />
+                <input type="text" class="form-control" placeholder="Enter tags" name="tags"/>
                 <div class="tag-list">
-                  <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
+                  <!-- <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span> -->
                 </div>
               </fieldset>
               <button class="btn btn-lg pull-xs-right btn-primary" type="submit">

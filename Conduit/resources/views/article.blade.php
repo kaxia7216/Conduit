@@ -38,8 +38,9 @@
         <!-- <h2 id="introducing-ionic">Introducing RealWorld.</h2> -->
         <p>{{$article->text}}</p>
         <ul class="tag-list">
-          <li class="tag-default tag-pill tag-outline">realworld</li>
-          <li class="tag-default tag-pill tag-outline">implementations</li>
+          @foreach($setTags as $setTag)
+            <li class="tag-default tag-pill tag-outline">{{$setTag->name}}</li>
+          @endforeach
         </ul>
       </div>
     </div>

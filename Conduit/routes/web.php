@@ -42,3 +42,5 @@ Route::post('/add-comment/{article_id}', [CommentController::class, 'addComment'
 
 //コメントの削除
 Route::get('/delete-Comment/{comment_id}&{article_id}', [CommentController::class, 'deleteComment']);
+
+Route::get('/tag-delete/{article_id}&{articleTag_id}', [ArticleController::class, 'deleteTagFromArticle']);

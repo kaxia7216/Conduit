@@ -16,11 +16,13 @@ class CommentController extends Controller
         $comment->article_id = $article_id;
         $comment->save();
 
+        //コメントを追加した記事、コメント、タグを取得
         $article = Article::firstWhere('id', $article_id);
         $articleComments = Comment::where('article_id', $article_id)->get();
+        $setTags = $article->tags()->get();
 
         //記事詳細画面にもどる
-        return view('article', compact('article', 'articleComments'));
+        return view('article', compact('article', 'articleComments', 'setTags'));
     }
 
     public function deleteComment($comment_id, $article_id)
@@ -32,8 +34,9 @@ class CommentController extends Controller
         //コメントの再取得
         $article = Article::firstWhere('id', $article_id);
         $articleComments = Comment::where('article_id', $article_id)->get();
+        $setTags = $article->tags()->get();
 
         //記事詳細画面にもどる
-        return view('article', compact('article', 'articleComments'));
+        return view('article', compact('article', 'articleComments', 'setTags'));
     }
 }

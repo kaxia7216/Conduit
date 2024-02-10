@@ -38,42 +38,13 @@
               <p>{{$article->theme}}</p>
               <span>Read more...</span>
               <ul class="tag-list">
-                <li class="tag-default tag-pill tag-outline">realworld</li>
-                <li class="tag-default tag-pill tag-outline">implementations</li>
+                @foreach($article->tags as $article_tag)
+                  <li class="tag-default tag-pill tag-outline">{{$article_tag->name}}</li>
+                @endforeach
               </ul>
             </a>
           </div>
         @endforeach
-        <!-- <div class="article-preview">
-          <div class="article-meta">
-            <a href="/profile/albert-pai"><img src="http://i.imgur.com/N4VcUeJ.jpg" /></a>
-            <div class="info">
-              <a href="/profile/albert-pai" class="author">Albert Pai</a>
-              <span class="date">January 20th</span>
-            </div>
-            <button class="btn btn-outline-primary btn-sm pull-xs-right">
-              <i class="ion-heart"></i> 32
-            </button>
-          </div>
-          <a href="/article/the-song-you" class="preview-link">
-            <h1>The song you won't ever stop singing. No matter how hard you try.</h1>
-            <p>This is the description for the post.</p>
-            <span>Read more...</span>
-            <ul class="tag-list">
-              <li class="tag-default tag-pill tag-outline">realworld</li>
-              <li class="tag-default tag-pill tag-outline">implementations</li>
-            </ul>
-          </a>
-        </div> -->
-
-        <!-- <ul class="pagination">
-          <li class="page-item active">
-            <a class="page-link" href="">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="">2</a>
-          </li>
-        </ul> -->
       </div>
 
       <div class="col-md-3">
@@ -81,14 +52,9 @@
           <p>Popular Tags</p>
 
           <div class="tag-list">
-            <a href="" class="tag-pill tag-default">programming</a>
-            <a href="" class="tag-pill tag-default">javascript</a>
-            <a href="" class="tag-pill tag-default">emberjs</a>
-            <a href="" class="tag-pill tag-default">angularjs</a>
-            <a href="" class="tag-pill tag-default">react</a>
-            <a href="" class="tag-pill tag-default">mean</a>
-            <a href="" class="tag-pill tag-default">node</a>
-            <a href="" class="tag-pill tag-default">rails</a>
+            @foreach($tagRanking as $tag)
+              <a href="" class="tag-pill tag-default">{{$tag->name}}</a>
+            @endforeach
           </div>
         </div>
       </div>
