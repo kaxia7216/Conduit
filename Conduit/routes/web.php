@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +15,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [ArticleController::class, 'showArticles']);
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/home', [ArticleController::class, 'showArticles']);
 
-Route::get('/article', function () {
-    return view('article');
-});
+//記事の詳細、コメントを表示
+Route::get('/article/{article_id}', [ArticleController::class, 'pickUpArticle']);
 
-Route::get('/create-edit-article', function () {
-    return view('create-edit-article');
-});
+//記事の編集画面へ
+Route::get('/edit/{article_id}', [ArticleController::class, 'forEditArticle']);
+
+//記事の編集
+Route::post('/edit/{article_id}', [ArticleController::class, 'editArticle']);
+
+//記事の新規作成画面へ
+Route::get('/create', [ArticleController::class, 'forCreateArticle']);
+
+//記事の新規作成
+Route::post('/create', [ArticleController::class, 'createArticle']);
+
+//記事の削除
+Route::get('/delete/{article_id}', [ArticleController::class, 'deleteArticle']);
+
+//コメントの追加
+Route::post('/add-comment/{article_id}', [CommentController::class, 'addComment']);
+
+//コメントの削除
+Route::get('/delete-Comment/{comment_id}&{article_id}', [CommentController::class, 'deleteComment']);
+
+Route::get('/tag-delete/{article_id}&{articleTag_id}', [ArticleController::class, 'deleteTagFromArticle']);
