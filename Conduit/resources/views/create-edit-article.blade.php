@@ -38,6 +38,13 @@
             </fieldset>
           </form>
         @else
+          @if ($errors->any())
+            <ul class="error-messages">
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          @endif
           <form method="post" action="/create">
             <fieldset>
               @csrf

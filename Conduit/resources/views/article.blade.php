@@ -35,7 +35,6 @@
   <div class="container page">
     <div class="row article-content">
       <div class="col-md-12">
-        <!-- <h2 id="introducing-ionic">Introducing RealWorld.</h2> -->
         <p>{{$article->text}}</p>
         <ul class="tag-list">
           @foreach($setTags as $setTag)
@@ -75,6 +74,13 @@
 
     <div class="row">
       <div class="col-xs-12 col-md-8 offset-md-2">
+        @if ($errors->any())
+        <ul class="error-messages">
+          @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+          @endforeach
+        </ul>
+        @endif
         <form class="card comment-form" method="POST" action="/add-comment/{{$article->id}}">
           @csrf
           <div class="card-block">
