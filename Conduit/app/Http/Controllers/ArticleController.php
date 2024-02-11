@@ -19,6 +19,12 @@ class ArticleController extends Controller
 
     public function createArticle(Request $request)
     {
+        // バリデーション
+        $validated = $request->validate([
+            'title' => 'filled',
+            'text' => 'filled',
+        ]);
+
         //新規記事を作成
         $article = new Article();
         $article->title = $request['title'];

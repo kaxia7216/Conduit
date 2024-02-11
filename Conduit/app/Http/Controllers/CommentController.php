@@ -10,6 +10,11 @@ class CommentController extends Controller
 {
     public function addComment(Request $request, $article_id)
     {
+        // バリデーション
+        $validated = $request->validate([
+            'comment' => 'filled',
+        ]);
+
         //コメント追加
         $comment = new Comment();
         $comment->comment = $request['comment'];
