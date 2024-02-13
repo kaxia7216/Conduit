@@ -16,7 +16,33 @@ git clone https://github.com/kaxia7216/Conduit.git
 ```
 conduitディレクトリに移動します。
 ```
-cd Conduit
+cd Conduit/Conduit
+```
+
+cloneした時点では、起動するためのvenderフォルダと.envファイルがないため、それぞれ作成します。
+
+.envファイルは .env.exampleファイルをコピーして.envファイルにリネームして使用してください。
+```
+cp .env.example .env
+```
+
+.envファイルは、以下の設定を変更する必要があります
+```
+APP_DEBUG=false
+APP_URL=http://localhost
+DB_HOST=mysql
+MEMCACHED_HOST=memcached
+REDIS_HOST=redis
+```
+
+dockerコマンドでvenderフォルダを作成します
+```
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
 ```
 
 sail コマンドを入力します。
