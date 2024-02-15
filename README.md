@@ -31,6 +31,9 @@ cp .env.example .env
 APP_DEBUG=false
 APP_URL=http://localhost
 DB_HOST=mysql
+DB_DATABASE=conduit
+DB_USERNAME=root
+DB_PASSWORD=password
 MEMCACHED_HOST=memcached
 REDIS_HOST=redis
 ```
